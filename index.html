@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyberpunk Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            font-family: 'Roboto Mono', monospace;
+            background: linear-gradient(45deg, #0d0d2b, #020210);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        h1, h2, h3 {
+            font-family: 'Orbitron', sans-serif;
+        }
+        a {
+            color: #ff00ff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .neon {
+            text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+        }
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: rgba(0, 0, 0, 0.8);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+        header h1 {
+            font-size: 1.5rem;
+        }
+        nav a {
+            margin: 0 1rem;
+            font-size: 1rem;
+        }
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            margin: 0;
+        }
+        .hero p {
+            font-size: 1.2rem;
+        }
+        /* Profile Section */
+        .profile {
+            margin: 5rem auto 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .profile-card {
+            width: 300px;
+            height: 400px;
+            perspective: 1000px;
+        }
+        .profile-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        .profile-card:hover .profile-card-inner {
+            transform: rotateY(180deg);
+        }
+        .profile-card-front, .profile-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border: 2px solid #ff00ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background: linear-gradient(45deg, #0d0d2b, #1a0033);
+            color: #ffffff;
+            border-radius: 15px;
+        }
+        .profile-card-back {
+            transform: rotateY(180deg);
+        }
+        .profile-card img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 2px solid #ff00ff;
+            margin-bottom: 1rem;
+        }
+        /* Projects Section */
+        .projects {
+            margin: 2rem auto;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.8);
+        }
+        .projects h2 {
+            text-align: center;
+        }
+        .projects-container {
+            display: flex;
+            overflow-x: auto;
+            padding: 1rem;
+        }
+        .project-card {
+            min-width: 250px;
+            margin: 0 1rem;
+            padding: 1rem;
+            border: 2px solid #ff00ff;
+            background: #1a0033;
+            border-radius: 10px;
+            color: #ffffff;
+        }
+        .project-card:hover {
+            box-shadow: 0 0 15px #ff00ff;
+        }
+        /* About Me Section */
+        .about {
+            margin: 2rem auto;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.8);
+            color: #ffffff;
+        }
+        .about h2 {
+            text-align: center;
+        }
+        .skills {
+            margin-top: 2rem;
+        }
+        .skill {
+            margin: 1rem 0;
+        }
+        .skill span {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        .skill-bar {
+            width: 100%;
+            background: #222;
+            border: 1px solid #444;
+            border-radius: 5px;
+        }
+        .skill-bar div {
+            height: 10px;
+            background: #ff00ff;
+            border-radius: 5px;
+        }
+        /* Contact Section */
+        .contact {
+            margin: 2rem auto;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.8);
+            color: #ffffff;
+        }
+        .contact h2 {
+            text-align: center;
+        }
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .contact-form input, .contact-form textarea, .contact-form button {
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            border: 2px solid #ff00ff;
+            background: #1a0033;
+            color: #ffffff;
+        }
+        .contact-form button {
+            cursor: pointer;
+            background: linear-gradient(45deg, #ff00ff, #9900cc);
+        }
+        .contact-form button:hover {
+            box-shadow: 0 0 15px #ff00ff;
+        }
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.8);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>I Putu Agus Ananda Guna Prasetya</h1>
+        <nav>
+            <a href="#profile">Profile</a>
+            <a href="#projects">Projects</a>
+            <a href="#about">About Me</a>
+            <a href="#contact">Contact Me</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1 class="neon">Welcome to My Portfolio</h1>
+        <p>Front-End Developer | Informatics Student, Semester 1</p>
+    </section>
+
+    <section id="profile" class="profile">
+        <div class="profile-card">
+            <div class="profile-card-inner">
+                <div class="profile-card-front">
+                    <img src="https://i.pinimg.com/236x/75/f0/f6/75f0f6b7dd94dbd496b5a49f7c534862.jpg" alt="Profile Picture">
+                    <h2>🚀Hi, I’m Ananda!🚀</h2>
+                    <p>Front-End Developer</p>
+                </div>
+                <div class="profile-card-back">
+                    <p>I’m a first-semester Informatics student at UHN Sugriwa Denpasar and a passionate Front-End Web Developer. I love crafting beautiful, responsive websites and exploring new technologies. In my free time, I enjoy cycling, reading comics, and learning new skills to enhance my craft.</p>
+                    <p>Email: agusanandaguna@protonmail.com</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects">
+        <h2>Projects</h2>
+        <div class="projects-container">
+            <div class="project-card">
+                <h3>Project 1</h3>
+                <p>BELUM ISI NEXT ISI .</p>
+                <a href="#">View Details</a>
+            </div>
+            <div class="project-card">
+                <h3>Project 2</h3>
+                <p>WEBSITE CEK KHODAM-BY.GUSNAN555</p>
+                <a href="https://anandaguna.github.io/cekkhodam/">View Details</a>
+            </div>
+            <div class="project-card">
+                <h3>Project 3</h3>
+                <p>MASIH KOSONG, KEK HATI SAYA</p>
+                <a href="https://anandaguna.github.io/cekkhodam/">View Details</a>
+            </div>
+            <div class="project-card">
+                <h3>Project 4</h3>
+                <p>MASIH KOSONG, KEK HATI SAYA</p>
+                <a href="https://anandaguna.github.io/cekkhodam/">View Details</a>
+            </div>
+            <div class="project-card">
+                <h3>Project 5</h3>
+                <p>MASIH KOSONG, KEK HATI SAYA</p>
+                <a href="https://anandaguna.github.io/cekkhodam/">View Details</a>
+            </div>
+            <div class="project-card">
+                <h3>Project 6</h3>
+                <p>MASIH KOSONG, KEK HATI SAYA</p>
+                <a href="https://anandaguna.github.io/cekkhodam/">View Details</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <h2>About Me</h2>
+        <p>I am I Putu Agus Ananda Guna Prasetya, a first-semester Informatics student at Universitas Hindu Negeri I Gusti Bagus Sugriwa Denpasar. 
+            I am a passionate Front-End Developer with a knack for creating visually engaging and user-friendly websites. 
+            Skilled in various programming languages and always eager to learn new technologies to bring ideas to life.</p>
+        <div class="skills-container">
+            <div class="skill">
+                <div class="rocket" style="--percentage: 89%;"></div>
+                <span>JavaScript - 89%</span>
+            </div>
+            <div class="skill">
+                <div class="rocket" style="--percentage: 90%;"></div>
+                <span>C++ - 90%</span>
+            </div>
+            <div class="skill">
+                <div class="rocket" style="--percentage: 45%;"></div>
+                <span>Node.js - 45%</span>
+            </div>
+            <div class="skill">
+                <div class="rocket" style="--percentage: 95%;"></div>
+                <span>Python - 95%</span>
+            </div>
+            <div class="skill">
+                <div class="rocket" style="--percentage: 45%;"></div>
+                <span>XAMPP - 45%</span>
+            </div>
+        </div>
+    </section>
+    
+    <style>
+        .skills-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            padding: 2rem 0;
+        }
+    
+        .skill {
+            text-align: center;
+            margin: 1rem;
+        }
+    
+        .rocket {
+            position: relative;
+            width: 40px;
+            height: 150px;
+            background: linear-gradient(45deg, #ff00ff, #1a0033);
+            border: 2px solid #ff00ff;
+            border-radius: 20px 20px 5px 5px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+    
+        .rocket::before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: var(--percentage);
+            background: linear-gradient(to top, #ff00ff, #9900cc);
+            border-radius: 15px 15px 0 0;
+        }
+    
+        .rocket::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 10px;
+            height: 15px;
+            background: linear-gradient(45deg, #ff00ff, #9900cc);
+            border-radius: 50%;
+            animation: flameFlicker 0.3s infinite;
+        }
+    
+        @keyframes flameFlicker {
+            0%, 100% {
+                height: 15px;
+            }
+            50% {
+                height: 20px;
+            }
+        }
+    
+        .skill span {
+            display: block;
+            margin-top: 0.5rem;
+            font-size: 1rem;
+            color: #ffffff;
+            font-family: 'Orbitron', sans-serif;
+        }
+    </style>
+    
+    
+    <section id="contact" class="contact-section">
+        <h2>Contact Me</h2>
+        <div class="contact-box">
+            <form action="mailto:agusanandaguna@protonmail.com">
+                <input type="text" name="name" placeholder="Name" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="text" name="subject" placeholder="Subject" required>
+                <textarea name="message" rows="5" placeholder="Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </section>
+    
+    <style>
+        .contact-section {
+            margin: 2rem auto;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.8);
+            color: #ffffff;
+            text-align: center;
+        }
+        .contact-box {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 2rem;
+            border: 2px solid #ff00ff;
+            background: linear-gradient(45deg, #0d0d2b, #1a0033);
+            box-shadow: 0 0 15px #ff00ff, 0 0 30px #9900cc, 0 0 45px #ff00ff;
+            border-radius: 15px;
+        }
+        .contact-box input,
+        .contact-box textarea,
+        .contact-box button {
+            width: 100%;
+            margin: 0.5rem 0;
+            padding: 0.75rem;
+            border: 2px solid #ff00ff;
+            background: #1a0033;
+            color: #ffffff;
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+        .contact-box textarea {
+            resize: none;
+        }
+        .contact-box button {
+            cursor: pointer;
+            background: linear-gradient(45deg, #ff00ff, #9900cc);
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        .contact-box button:hover {
+            box-shadow: 0 0 15px #ff00ff, 0 0 30px #ff00ff;
+        }
+    </style>
+    
+
+    <footer>
+        <p>Connect with me on <a href="https://www.linkedin.com/in/agus-ananda-235099307/">LinkedIn</a> | <a href="https://github.com/anandaguna">GitHub</a> | <a href="https://x.com/">X</a></p>
+    </footer>
+</body>
+</html>
+```
